@@ -2,6 +2,7 @@
 require_once 'simple_html_dom.php';
 require_once 'function.php';
 require_once 'configdb.php';
+require_once 'auto.php';
 
 $PATH = dirname(__FILE__).'/';
 $COOKIEFILE = $PATH.'protect/scb-cookies';
