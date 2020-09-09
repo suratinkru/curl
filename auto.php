@@ -3,14 +3,8 @@
 //     include_once('configdb.php'); 
 
 // $total = array(
-//     0 => array("date" => " 05/08/2020 15:22", "in" => "6666.35", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 นายภัทรพล รุ่งศรีเรือง"),
-//     1 => array("date" => " 05/08/2020 15:23", "in" => "6666.00", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 นางสาว ภัทรพล รุ่งศรีเรือง"),
-//     2 => array("date" => " 05/08/2020 15:23", "in" => "63.00", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 น.ส. ภัทรพล รุ่งศรีเรือง"),
-//     3 => array("date" => " 05/08/2020 15:23", "in" => "66622.00", "out" => "22.00", "info" => "ENET รับโอนจาก KBANK x2242"),
-//     4 => array("date" => " 05/08/2020 15:23", "in" => "6.00", "out" => "220.00", "info" => "ENET รับโอนจาก KTB x2242"),
-//     5 => array("date" => " 05/08/2020 15:23", "in" => "6.00", "out" => "22.00", "info" => "ENET รับโอนจาก (KBANK) x2242"),
-//     6 => array("date" => " 05/08/2020 15:23", "in" => "667.00", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 น.ส.ภัทรพล รุ่งศรีเรือง"),
-//     7 => array("date" => " 03/08/2020 15:23", "in" => "667.00", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 น.ส.ภัทรพล รุ่งศรีเรือง"),
+//     0 => array("date" => " 06/08/2020 15:22", "in" => "10.35", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 นายภัทรพล รุ่งศรีเรือง"),
+
     
 // );
 
@@ -115,7 +109,7 @@ if($result->num_rows <= 0 ){
         ];
 
            $data = json_encode($post,JSON_UNESCAPED_UNICODE);                                                                              
-        $url = 'https://auto.super6group.com/affiliate-restful-api/public/api/external/payment/scb/curl';
+        $url = 'http://128.199.214.40:4000/api/deposit/curl';
     
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
