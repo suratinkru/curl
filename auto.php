@@ -78,7 +78,10 @@ foreach ($total as $val) {
         }
        
     }
-
+ 
+    print_r($date);
+    print_r("date");
+    print_r("date");
 
     $checkdate = date('Y-m-d');
     $result = mysqli_query($conn, "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
@@ -91,7 +94,7 @@ if($result->num_rows <= 0 ){
  
          mysqli_query($conn, $sql); 
 
-
+ 
          $post = [
 
             'title'  => 'curl',
@@ -107,7 +110,7 @@ if($result->num_rows <= 0 ){
           
 
         ];
-
+        print_r($post);
         //    $data = json_encode($post,JSON_UNESCAPED_UNICODE);                                                                              
         // $url = 'http://128.199.214.40:4000/api/deposit/curl';
     
