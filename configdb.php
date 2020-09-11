@@ -8,8 +8,8 @@
     // $port = "3306";
 
     $host = "localhost";
-    $user = "root";
-    $password = "rootSuper6group";
+    $user = "sammy";
+    $password = "JakkritDev2020!";
     $database = "noti"; 
    
     
