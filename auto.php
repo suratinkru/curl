@@ -1,9 +1,39 @@
 <?php
 
-    include_once('configdb.php'); 
+   
+$host = "localhost";
+$user = "sammy";
+$password = "JakkritDev2020!";
+$database = "noti"; 
+
+
+
+// $host = "localhost";
+// $user = "root";
+// $password = "";
+// $database = "noti"; 
+
+
+
+
+
+
+$conn = mysqli_connect( $host,$user,$password,$database);
+mysqli_set_charset($conn, "utf8");
+if (mysqli_connect_errno()) {
+echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
+
+
+
+$conn = mysqli_connect( $host,$user,$password,$database);
+mysqli_set_charset($conn, "utf8");
+if (mysqli_connect_errno()) {
+echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
 
 $total = array(
-    0 => array("date" => " 04/08/2020 15:22", "in" => "10.35", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 นายภัทรพล รุ่งศรีเรือง"),
+    0 => array("date" => " 08/08/2020 15:22", "in" => "10.35", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 นายภัทรพล รุ่งศรีเรือง"),
 
     
 );
