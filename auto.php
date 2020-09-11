@@ -1,14 +1,14 @@
 <?php
 
-//     include_once('configdb.php'); 
+    include_once('configdb.php'); 
 
-// $total = array(
-//     0 => array("date" => " 06/08/2020 15:22", "in" => "10.35", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 นายภัทรพล รุ่งศรีเรือง"),
+$total = array(
+    0 => array("date" => " 04/08/2020 15:22", "in" => "10.35", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 นายภัทรพล รุ่งศรีเรือง"),
 
     
-// );
+);
 
-function insertdata($total,$conn){
+// function insertdata($total,$conn){
     $DataArrOld = array();
 $newDataArr = array();
 $datadiff = array();
@@ -108,26 +108,26 @@ if($result->num_rows <= 0 ){
 
         ];
 
-           $data = json_encode($post,JSON_UNESCAPED_UNICODE);                                                                              
-        $url = 'http://128.199.214.40:4000/api/deposit/curl';
+        //    $data = json_encode($post,JSON_UNESCAPED_UNICODE);                                                                              
+        // $url = 'http://128.199.214.40:4000/api/deposit/curl';
     
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        $result = curl_exec($ch);
-        curl_close($ch);
-        print_r ($result);
+        // $ch = curl_init($url);
+        // curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        // curl_setopt($ch, CURLOPT_POST, 1);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        // $result = curl_exec($ch);
+        // curl_close($ch);
+        // print_r ($result);
 
     }
 
 
 }
-}
+// }
 
 
 
