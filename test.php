@@ -1,5 +1,30 @@
 <?php
-function insertdata($total,$conn){
+
+$host = "localhost";
+ $user = "sammy";
+ $password = "JakkritDev2020!";
+ $database = "noti"; 
+
+
+
+
+ $conn = mysqli_connect( $host,$user,$password,$database);
+ mysqli_set_charset($conn, "utf8");
+ if (mysqli_connect_errno()) {
+ echo "Failed to connect to MySQL: " . mysqli_connect_error();
+ }
+
+
+$total = array(
+    0 => array("date" => " 01/08/2020 15:22", "in" => "10.35", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 นายภัทรพล รุ่งศรีเรือง"),
+
+    
+);
+
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 foreach ($total as $val) {
     $travelDates = date('Y-m-d H:i:s', strtotime($val['date']));
@@ -66,56 +91,18 @@ foreach ($total as $val) {
        
     }
  
-    print_r($date);
-    print_r("date");
-    print_r("date");
-
-    $checkdate = date('Y-m-d');
-    $result = mysqli_query($conn, "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
+         $checkdate = date('Y-m-d');
+         $result = mysqli_query($conn, "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
 
 
-if($result->num_rows <= 0 ){
+         if($result->num_rows <= 0 ){
 
             $sql = "INSERT INTO `scb` (`id`, `title`, `date`, `time`, `amount`, `out`, `bk`, `account`, `first_name`, `last_name`,`checkdate`) 
-        VALUES (NULL, 'curl', '$date ', '$time', '$amount', '$out ', '$bk', '$acount', '$first_name', '$last_name' ,'$checkdate')";
+            VALUES (NULL, 'curl', '$date ', '$time', '$amount', '$out ', '$bk', '$acount', '$first_name', '$last_name' ,'$checkdate')";
  
-         mysqli_query($conn, $sql); 
+            mysqli_query($conn, $sql); 
 
- 
-         $post = [
-
-            'title'  => 'curl',
-            'date'   => $date,
-            'time'   => $time,
-            'amount' => $amount,
-            'transfer_from_bank'    => $bk,
-            'bank_account_number'  => $acount,
-            'first_name'  => $first_name,
-            'last_name'  => $last_name,
-            'hash_key' => '4jMmPayt0DPJIJkg5pEPG4ZmeJPed91E'
-   
-
-        ];
-        print_r($post);
-           $data = json_encode($post,JSON_UNESCAPED_UNICODE);                                                                              
-        $url = 'http://128.199.214.40:4000/api/deposit/curl';
-    
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        $result = curl_exec($ch);
-        curl_close($ch);
-        print_r ($result);
-
-    }
 
 }
 }
-
-
-
+?>
