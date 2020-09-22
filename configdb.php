@@ -1,16 +1,16 @@
 <?php
 
 
-    $host = "localhost";
-    $user = "root";
-    $password = "!";
-    $database = "noti";
-    $port = "3306";
-
     // $host = "localhost";
-    // $user = "sammy";
-    // $password = "JakkritDev2020!";
-    // $database = "noti"; 
+    // $user = "root";
+    // $password = "!";
+    // $database = "noti";
+    // $port = "3306";
+
+    $host = "localhost";
+    $user = "sammy";
+    $password = "JakkritDev2020!";
+    $database = "gateway"; 
    
     
 $conn = mysqli_connect( $host,$user,$password,$database);
