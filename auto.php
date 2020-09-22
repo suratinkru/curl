@@ -2,11 +2,11 @@
 function insertdata($total,$conn){
 
 foreach ($total as $val) {
-    $travelDates = date('Y-m-d H:i:s', strtotime($val['date']));
-    $travelDates = preg_split("/[\s,]+/", $travelDates);
+   // $travelDates = date('Y-m-d H:i:s', strtotime($val['date']));
+    $travelDates = preg_split("/[\s,]+/", $val['date']);
     $datetime =  $travelDates;
-    $date = date('m/d', strtotime($datetime[0]));
-    $time = mb_substr($datetime[1], 0, 5, 'UTF-8');
+    $date = $datetime[1];
+    $time = $datetime[2];
     $amount = $val['in'];
     $out = $val['out'];
     $info = $val['info'];
@@ -23,8 +23,20 @@ foreach ($total as $val) {
                 $bk1 = preg_split("/[\s,()]+/", $val[2]);
                 $bk = $bk1[1];
             }
+
+            $findsl = '/';
+            $possl = strpos( $val[3],$findsl);
+            if ($possl === false) {
+                $acount = $val[3];
+            } else {
+            
+                $acount1 = preg_split("/[\s,\/]+/", $val[3]);
+                print_r($acount1);
+                $acount = $acount1[1];
+            }
+
      
-        $acount = $val[3];
+     
         if(!empty($val[4]) ){
            
             if($val[4] === "นาย" || $val[4] === "นางสาว" || $val[4] === "น.ส."){
@@ -66,10 +78,7 @@ foreach ($total as $val) {
        
     }
  
-    print_r($date);
-    print_r("date");
-    print_r("date");
-
+  
     $checkdate = date('Y-m-d');
     $result = mysqli_query($conn, "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
 

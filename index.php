@@ -6,9 +6,9 @@ require_once 'auto.php';
 
 $PATH = dirname(__FILE__).'/';
 $COOKIEFILE = $PATH.'protect/scb-cookies';
-$USERNAME = "panpan112233"; //Username เข้าระบบ
-$PASSWORD = "Aa112233"; //Password
-$ACCOUNT_NAME = str_replace("-", "", "371-2-81663-0"); //เลขบชกรอกตามนี้ครับ.
+$USERNAME = "P202515p"; //Username เข้าระบบ
+$PASSWORD = "Pp202515"; //Password
+$ACCOUNT_NAME = str_replace("-", "", "793-2-89221-6"); //เลขบชกรอกตามนี้ครับ.
 
 
 $ch = curl_init();

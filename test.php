@@ -1,22 +1,22 @@
 <?php
 
-$host = "localhost";
- $user = "sammy";
- $password = "JakkritDev2020!";
- $database = "noti"; 
+// $host = "localhost";
+//  $user = "sammy";
+//  $password = "JakkritDev2020!";
+//  $database = "noti"; 
 
 
 
 
- $conn = mysqli_connect( $host,$user,$password,$database);
- mysqli_set_charset($conn, "utf8");
- if (mysqli_connect_errno()) {
- echo "Failed to connect to MySQL: " . mysqli_connect_error();
- }
+//  $conn = mysqli_connect( $host,$user,$password,$database);
+//  mysqli_set_charset($conn, "utf8");
+//  if (mysqli_connect_errno()) {
+//  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+//  }
 
 
 $total = array(
-    0 => array("date" => " 01/08/2020 15:22", "in" => "10.35", "out" => "22.00", "info" => "ENET รับโอนจาก SCB x2242 นายภัทรพล รุ่งศรีเรือง"),
+    0 => array("date" => " 22/09/2020 10:21", "in" => "1", "out" => "0", "info" => "ENET กรุงไทย (KTB) /X655137"),
 
     
 );
@@ -27,11 +27,12 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 foreach ($total as $val) {
-    $travelDates = date('Y-m-d H:i:s', strtotime($val['date']));
-    $travelDates = preg_split("/[\s,]+/", $travelDates);
+    // $travelDates = date('Y-m-d H:i:s', strtotime($val['date']));
+    $travelDates = preg_split("/[\s,]+/", $val['date']);
+    print_r($travelDates);
     $datetime =  $travelDates;
-    $date = date('m/d', strtotime($datetime[0]));
-    $time = mb_substr($datetime[1], 0, 5, 'UTF-8');
+    $date = $datetime[1];
+    $time = $datetime[2];
     $amount = $val['in'];
     $out = $val['out'];
     $info = $val['info'];
@@ -48,8 +49,20 @@ foreach ($total as $val) {
                 $bk1 = preg_split("/[\s,()]+/", $val[2]);
                 $bk = $bk1[1];
             }
+
+            $findsl = '/';
+            $possl = strpos( $val[3],$findsl);
+            if ($possl === false) {
+                $acount = $val[3];
+            } else {
+            
+                $acount1 = preg_split("/[\s,\/]+/", $val[3]);
+                print_r($acount1);
+                $acount = $acount1[1];
+            }
+
      
-        $acount = $val[3];
+     
         if(!empty($val[4]) ){
            
             if($val[4] === "นาย" || $val[4] === "นางสาว" || $val[4] === "น.ส."){
@@ -90,19 +103,23 @@ foreach ($total as $val) {
         }
        
     }
+
+    print_r($date);
+    print_r($time);
+    print_r($acount);
  
-         $checkdate = date('Y-m-d');
-         $result = mysqli_query($conn, "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
+        //  $checkdate = date('Y-m-d');
+        //  $result = mysqli_query($conn, "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
 
 
-         if($result->num_rows <= 0 ){
+        //  if($result->num_rows <= 0 ){
 
-            $sql = "INSERT INTO `scb` (`id`, `title`, `date`, `time`, `amount`, `out`, `bk`, `account`, `first_name`, `last_name`,`checkdate`) 
-            VALUES (NULL, 'curl', '$date ', '$time', '$amount', '$out ', '$bk', '$acount', '$first_name', '$last_name' ,'$checkdate')";
+        //     $sql = "INSERT INTO `scb` (`id`, `title`, `date`, `time`, `amount`, `out`, `bk`, `account`, `first_name`, `last_name`,`checkdate`) 
+        //     VALUES (NULL, 'curl', '$date ', '$time', '$amount', '$out ', '$bk', '$acount', '$first_name', '$last_name' ,'$checkdate')";
  
-            mysqli_query($conn, $sql); 
+        //     mysqli_query($conn, $sql); 
 
 
-}
+    //    }
 }
 ?>
