@@ -14,6 +14,17 @@ foreach ($total as $val) {
 
     foreach ($arrayinfo as $val) {
 
+        $findbk   = 'PromptPay';
+        $pos = strpos( $val[1],$findbk );
+        if ($pos !== false) {
+            $bk = $val[1];
+            $acount = $val[2];
+            $first_name = $val[4];
+            $last_name = $val[5];
+
+        } else {
+
+              
             $findme   = '(';
             $pos = strpos( $val[2],$findme );
             if ($pos === false) {
@@ -31,7 +42,7 @@ foreach ($total as $val) {
             } else {
             
                 $acount1 = preg_split("/[\s,\/]+/", $val[3]);
-                print_r($acount1);
+             
                 $acount = $acount1[1];
             }
 
@@ -75,6 +86,11 @@ foreach ($total as $val) {
             $first_name = NULL;
             $last_name = NULL;
         }
+        
+           
+        }
+
+           
        
     }
  

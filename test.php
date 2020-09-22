@@ -16,7 +16,8 @@
 
 
 $total = array(
-    0 => array("date" => " 22/09/2020 10:21", "in" => "1", "out" => "0", "info" => "ENET กรุงไทย (KTB) /X655137"),
+    // 0 => array("date" => "22/09/2020 10:21", "in" => "1", "out" => "0", "info" => "ENET กรุงไทย (KTB) /X655137"),
+    0 => array("date" => "22/09/2020 10:21", "in" => "1", "out" => "0", "info" => "ENET PromptPay x3044 นาย ภัทรพล รุ่งศรีเรือง"),
 
     
 );
@@ -29,17 +30,30 @@ error_reporting(E_ALL);
 foreach ($total as $val) {
     // $travelDates = date('Y-m-d H:i:s', strtotime($val['date']));
     $travelDates = preg_split("/[\s,]+/", $val['date']);
-    print_r($travelDates);
+ 
     $datetime =  $travelDates;
-    $date = $datetime[1];
-    $time = $datetime[2];
+    $date = $datetime[0];
+    $time = $datetime[1];
     $amount = $val['in'];
     $out = $val['out'];
     $info = $val['info'];
     $arrayinfo[] = explode(" ", $info);
+   
 
     foreach ($arrayinfo as $val) {
 
+
+        $findbk   = 'PromptPay';
+        $pos = strpos( $val[1],$findbk );
+        if ($pos !== false) {
+            $bk = $val[1];
+            $acount = $val[2];
+            $first_name = $val[4];
+            $last_name = $val[5];
+
+        } else {
+
+              
             $findme   = '(';
             $pos = strpos( $val[2],$findme );
             if ($pos === false) {
@@ -57,7 +71,7 @@ foreach ($total as $val) {
             } else {
             
                 $acount1 = preg_split("/[\s,\/]+/", $val[3]);
-                print_r($acount1);
+             
                 $acount = $acount1[1];
             }
 
@@ -101,12 +115,35 @@ foreach ($total as $val) {
             $first_name = NULL;
             $last_name = NULL;
         }
+        
+           
+        }
+
+           
+
+           
+          
        
     }
 
     print_r($date);
+    echo '<br/>';
     print_r($time);
+    echo '<br/>';
+    print_r($amount);
+    echo '<br/>';
+    print_r($bk);
+    echo '<br/>';
     print_r($acount);
+    echo '<br/>';
+    print_r($first_name);
+    echo '<br/>';
+    print_r($last_name);
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
+    echo '<br/>';
  
         //  $checkdate = date('Y-m-d');
         //  $result = mysqli_query($conn, "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
