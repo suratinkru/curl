@@ -5,8 +5,8 @@ foreach ($total as $val) {
    // $travelDates = date('Y-m-d H:i:s', strtotime($val['date']));
     $travelDates = preg_split("/[\s,]+/", $val['date']);
     $datetime =  $travelDates;
-    $date = $datetime[1];
-    $time = $datetime[2];
+    $date = $datetime[0];
+    $time = $datetime[1];
     $amount = $val['in'];
     $out = $val['out'];
     $info = $val['info'];
