@@ -3,9 +3,9 @@
 
     // $host = "localhost";
     // $user = "root";
-    // $password = "!";
+    // $password = "";
     // $database = "noti";
-    // $port = "3306";
+
 
     $host = "localhost";
     $user = "sammy";
