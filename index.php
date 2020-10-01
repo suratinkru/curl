@@ -92,8 +92,57 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $post_string);
 $data = curl_exec($ch);
 
 
-// #f1 form redirect
 $html = str_get_html($data);
+
+// var_dump($html);
+// account money
+$tableaccount = $html->find('table#DataProcess_SaCaGridView', 0);
+
+
+
+$totalaccount = array();
+if (!(empty($tableaccount))) {
+
+	foreach($tableaccount->find('tr') as $tr) {
+		$listaccount = array();
+		$listaccount['account'] = clean($tr->find('td',2)->plaintext);
+			
+				$listaccount['Balance'] = (float) str_replace(',','', clean($tr->find('td',3)->plaintext));
+				$listaccount['Availableaccountbalance'] = (float) str_replace(',','', clean($tr->find('td',4)->plaintext));
+				
+				$totalaccount[] = $listaccount;
+	}
+}
+
+
+ $totallast = array();
+ $to = array();
+ $accountnumber;
+ $amounttotal;
+ $amountbalance;
+ if (empty($totalaccount)) { 
+	 echo 'Not Statement Today';
+  } else {
+	foreach ($totalaccount as $val) { 
+
+		$totallast['account'] = $val['account'];
+		$totallast['Balance'] = $val['Balance'];
+		$totallast['Availableaccountbalance'] = $val['Availableaccountbalance'];
+		$to[] = $totallast;
+	
+		 } 
+		 $accountnumber = $to[2]['account'];
+		 $amounttotal = $to[3]['Balance'];
+		 $amountbalance = $to[3]['Availableaccountbalance'];
+	
+	
+	}
+
+
+
+
+// #f1 form redirect
+// $html = str_get_html($data);
 $form_field = array();
 foreach($html->find('form#f1 input') as $element) {
 	$form_field[$element->name] = $element->value;
@@ -132,11 +181,14 @@ if (!(empty($table))) {
 		$total[] = $list;
 	}
 }
-insertdata($total,$conn);
+
+
  if (empty($total)) { 
 	 echo 'Not Statement Today';
   } else {
+	insertdata($total,$conn,$accountnumber,$amounttotal,$amountbalance);
 	foreach ($total as $val) { 
 		print_r($val);
 		 } 
 	} ?>
+

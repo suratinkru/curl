@@ -1,5 +1,5 @@
 <?php
-function insertdata($total,$conn){
+function insertdata($total,$conn,$accountnumber,$amounttotal,$amountbalance){
 
 foreach ($total as $val) {
    // $travelDates = date('Y-m-d H:i:s', strtotime($val['date']));
@@ -96,7 +96,7 @@ foreach ($total as $val) {
  
   
     $checkdate = date('Y-m-d');
-    $result = mysqli_query($conn, "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
+    $result = $conn->prepare( "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
 
 
 if($result->num_rows <= 0 ){
@@ -105,6 +105,7 @@ if($result->num_rows <= 0 ){
         VALUES (NULL, 'curl', '$date ', '$time', '$amount', '$out ', '$bk', '$acount', '$first_name', '$last_name' ,'$checkdate')";
  
          mysqli_query($conn, $sql); 
+        //  $conn->query($sql);
 
  
          $post = [
@@ -117,12 +118,16 @@ if($result->num_rows <= 0 ){
             'bank_account_number'  => $acount,
             'first_name'  => $first_name,
             'last_name'  => $last_name,
+            'accountnumber'  => $accountnumber,
+            'amounttotal'  => $amounttotal,
+            'amountbalance'  => $amountbalance,
             'hash_key' => '4jMmPayt0DPJIJkg5pEPG4ZmeJPed91E'
-   
 
         ];
+        
    
-           $data = json_encode($post,JSON_UNESCAPED_UNICODE);                                                                              
+           $data = json_encode($post,JSON_UNESCAPED_UNICODE);     
+           print_r($data);                                                                         
         $url = 'http://128.199.94.1:4000/api/deposit/curl';
         print_r($data);
         $ch = curl_init($url);
