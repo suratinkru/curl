@@ -96,7 +96,7 @@ foreach ($total as $val) {
  
   
     $checkdate = date('Y-m-d');
-    $result = $conn->prepare( "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
+    $result = mysqli_query($conn, "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
 
 
 if($result->num_rows <= 0 ){
