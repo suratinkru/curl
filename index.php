@@ -3,12 +3,16 @@ require_once 'simple_html_dom.php';
 require_once 'function.php';
 require_once 'configdb.php';
 require_once 'auto.php';
+require_once 'modifybank.php';
+
+$bankdata = array();
+$bankdata = usebank($conn);
 
 $PATH = dirname(__FILE__).'/';
 $COOKIEFILE = $PATH.'protect/scb-cookies';
-$USERNAME = "P202515p"; //Username เข้าระบบ
-$PASSWORD = "Pp202515"; //Password
-$ACCOUNT_NAME = str_replace("-", "", "793-2-89221-6"); //เลขบชกรอกตามนี้ครับ.
+$USERNAME = $bankdata[0]['username']; //Username เข้าระบบ
+$PASSWORD = $bankdata[0]['password']; //Password
+$ACCOUNT_NAME = str_replace("-", "", $bankdata[0]['account_name'] ); //เลขบชกรอกตามนี้ครับ.
 
 
 $ch = curl_init();

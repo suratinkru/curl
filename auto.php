@@ -18,7 +18,7 @@ foreach ($total as $val) {
         $pos = strpos( $val[1],$findbk );
         if ($pos !== false) {
             $bk = $val[1];
-            $acount = $val[2];
+            $account = $val[2];
             $first_name = $val[4];
             $last_name = $val[5];
 
@@ -38,12 +38,12 @@ foreach ($total as $val) {
             $findsl = '/';
             $possl = strpos( $val[3],$findsl);
             if ($possl === false) {
-                $acount = $val[3];
+                $account = $val[3];
             } else {
             
-                $acount1 = preg_split("/[\s,\/]+/", $val[3]);
+                $account1 = preg_split("/[\s,\/]+/", $val[3]);
              
-                $acount = $acount1[1];
+                $account = $account1[1];
             }
 
      
@@ -86,25 +86,47 @@ foreach ($total as $val) {
             $first_name = NULL;
             $last_name = NULL;
         }
-        
-           
+                
         }
-
-           
-       
+             
     }
  
   
     $checkdate = date('Y-m-d');
-    $result = mysqli_query($conn, "SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && first_name = '$first_name' && last_name = '$last_name' ");
+    echo $checkdate ;
+    echo "<br>";
+    echo $date ;
+    echo "<br>";
+    echo $time ;
+    echo "<br>";
+    echo $amount ;
+    echo "<br>";
+    echo $bk ;
+    echo "<br>";
+    echo $account ;
+    echo "<br>";
+    echo $first_name ;
 
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && account = '$account'  && first_name = '$first_name' && last_name = '$last_name' ");
+   
+    $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-if($result->num_rows <= 0 ){
+    $stmt->execute();
 
-            $sql = "INSERT INTO `scb` (`id`, `title`, `date`, `time`, `amount`, `out`, `bk`, `account`, `first_name`, `last_name`,`checkdate`) 
-        VALUES (NULL, 'curl', '$date ', '$time', '$amount', '$out ', '$bk', '$acount', '$first_name', '$last_name' ,'$checkdate')";
+    $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    print_r($result);
+    if($result == null){
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $sql = "INSERT INTO `scb` (`id`, `title`, `date`, `time`, `amount`, `out`, `bk`, `account`, `first_name`, `last_name`,`checkdate`) 
+                  VALUES (NULL, 'curl', '$date ', '$time', '$amount', '$out ', '$bk', '$account', '$first_name', '$last_name' ,'$checkdate')";
+        
+      $stmt = $conn->prepare($sql);
+         // execute the query
+      $stmt->execute();
+      echo $stmt->rowCount() . " records UPDATED successfully";
  
-         mysqli_query($conn, $sql); 
+        //  mysqli_query($conn, $sql); 
         //  $conn->query($sql);
 
  
@@ -115,7 +137,7 @@ if($result->num_rows <= 0 ){
             'time'   => $time,
             'amount' => $amount,
             'transfer_from_bank'    => $bk,
-            'bank_account_number'  => $acount,
+            'bank_account_number'  => $account,
             'first_name'  => $first_name,
             'last_name'  => $last_name,
             'accountnumber'  => $accountnumber,
@@ -142,6 +164,8 @@ if($result->num_rows <= 0 ){
         curl_close($ch);
         print_r ($result);
 
+    }else{
+        echo "aready";
     }
 
 }
