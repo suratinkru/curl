@@ -20,19 +20,19 @@
 // }
 
 //test
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+
+
 $servername = "localhost";
-$username = "root";
-$password = "";
-
-
-// // $servername = "localhost";
-// // $username = "sammy";
-// // $password = "JakkritDev2020!";
-// // $database = "gateway"; 
+$username = "sammy";
+$password = "JakkritDev2020!";
+// $database = "gateway"; 
 
 
 try {
-  $conn = new PDO("mysql:host=$servername;dbname=noti", $username, $password);
+  $conn = new PDO("mysql:host=$servername;dbname=gateway", $username, $password);
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   echo "Connected successfully";
