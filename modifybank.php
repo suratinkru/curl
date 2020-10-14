@@ -58,10 +58,23 @@ try {
     // set the resulting array to associative
 
 
-     $result = $stmt->fetch();
+    //  $result = $stmt->fetch();
+     $data = array();
+     $total = array();
+     while ($row = $stmt->fetch()) {
+      $data['id'] = $row['id'];
+      $data['bank_name'] = $row['bank_name'];
+      $data['username'] = $row['username'];
+      $data['password'] = $row['password'];
+      $data['account_number'] = $row['account_name'];
+      $data['created_at'] = $row['created_at'];
+      $data['updated_at'] = $row['updated_at'];
+      $total[] = $data;
 
-     $data = json_encode($result,JSON_UNESCAPED_UNICODE);  
-     echo $data; 
+  }
+
+     $total = json_encode($total,JSON_UNESCAPED_UNICODE);  
+     echo $total; 
 
 
 
