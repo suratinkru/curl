@@ -75,7 +75,7 @@ function usebank($conn){
     try {
       
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $conn->prepare("SELECT * FROM bank");
+        $stmt = $conn->prepare("SELECT * FROM bank ORDER BY id DESC LIMIT 1");
         $stmt->execute();
    
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);

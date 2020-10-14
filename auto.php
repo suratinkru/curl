@@ -150,7 +150,7 @@ foreach ($total as $val) {
    
            $data = json_encode($post,JSON_UNESCAPED_UNICODE);     
            print_r($data);                                                                         
-        $url = 'http://128.199.94.1:4000/api/deposit/curl';
+        $url = 'http://128.199.94.1:7000/api/deposit/curl';
         print_r($data);
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
