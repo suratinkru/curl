@@ -8,6 +8,8 @@ require_once 'modifybank.php';
 $bankdata = array();
 $bankdata = usebank($conn);
 
+print_r($bankdata[0]['username']);
+print_r($bankdata[0]['password']);
 $PATH = dirname(__FILE__).'/';
 $COOKIEFILE = $PATH.'protect/scb-cookies';
 $USERNAME = $bankdata[0]['username']; //Username เข้าระบบ
