@@ -14,7 +14,8 @@ $PATH = dirname(__FILE__).'/';
 $COOKIEFILE = $PATH.'protect/scb-cookies';
 $USERNAME = $bankdata[0]['username']; //Username เข้าระบบ
 $PASSWORD = $bankdata[0]['password']; //Password
-$ACCOUNT_NAME = str_replace("-", "", $bankdata[0]['account_name'] ); //เลขบชกรอกตามนี้ครับ.
+$ACCOUNT_NAME = str_replace("-", "", $bankdata[0]['account_number'] ); //เลขบชกรอกตามนี้ครับ.
+
 
 
 $ch = curl_init();

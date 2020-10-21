@@ -93,19 +93,7 @@ foreach ($total as $val) {
  
   
     $checkdate = date('Y-m-d');
-    echo $checkdate ;
-    echo "<br>";
-    echo $date ;
-    echo "<br>";
-    echo $time ;
-    echo "<br>";
-    echo $amount ;
-    echo "<br>";
-    echo $bk ;
-    echo "<br>";
-    echo $account ;
-    echo "<br>";
-    echo $first_name ;
+   
 
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $stmt = $conn->prepare("SELECT * FROM `scb` WHERE checkdate =  '$checkdate' &&  date = '$date'  &&  time = '$time' && amount = '$amount' && bk = '$bk' && account = '$account'  && first_name = '$first_name' && last_name = '$last_name' ");

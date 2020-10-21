@@ -5,7 +5,9 @@ require_once 'modifybank.php';
 $BANK_NAME = $_POST['bank_name'];
 $USERNAME =  $_POST['username'];
 $PASSWORD = $_POST['password'];
-$ACCOUNT_NAME =  $_POST['account_number'];
+$ACCOUNT_NUMBER =  $_POST['account_number'];
+$ACCOUNT_NAME =  $_POST['account_name'];
+$ACCOUNT_TYPE =  $_POST['account_type'];
 $ID =  $_POST['id'];
 
 $CRUD =  $_POST['crud'];
@@ -21,13 +23,13 @@ $has_key = $HAS_KEY;
 if (md5($has_key) === '637e35acf4b87f919b859c6ff33bcd19') {
 
     if($insertbank == $CRUD){    
-        echo 'test';
-        insertbank($BANK_NAME,$USERNAME,$PASSWORD,$ACCOUNT_NAME,$conn);
+ 
+        insertbank($BANK_NAME,$USERNAME,$PASSWORD,$ACCOUNT_NAME,$ACCOUNT_NUMBER,$ACCOUNT_TYPE, $conn);
     }
     
     
     if($updatebank == $CRUD){
-        updatebank($ID,$BANK_NAME,$USERNAME,$PASSWORD,$ACCOUNT_NAME,$conn);
+        updatebank($ID,$BANK_NAME,$USERNAME,$PASSWORD,$ACCOUNT_NAME,$ACCOUNT_NUMBER,$ACCOUNT_TYPE, $conn);
     }
     
     
