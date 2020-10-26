@@ -8,8 +8,10 @@ require_once 'modifybank.php';
 $bankdata = array();
 $bankdata = usebank($conn);
 
+print_r("ok");
 print_r($bankdata[0]['username']);
 print_r($bankdata[0]['password']);
+print_r($bankdata[0]['account_number']);
 $PATH = dirname(__FILE__).'/';
 $COOKIEFILE = $PATH.'protect/scb-cookies';
 $USERNAME = $bankdata[0]['username']; //Username เข้าระบบ
@@ -141,6 +143,7 @@ if (!(empty($tableaccount))) {
 		 $accountnumber = $to[2]['account'];
 		 $amounttotal = $to[3]['Balance'];
 		 $amountbalance = $to[3]['Availableaccountbalance'];
+		 print_r( "dfsdfdfd: ".$amountbalance );
 	
 	
 	}
